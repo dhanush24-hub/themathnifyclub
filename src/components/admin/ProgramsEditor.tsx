@@ -42,6 +42,7 @@ export default function ProgramsEditor() {
 
   useEffect(() => {
     if (!activeId) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setImages([]);
       return;
     }
@@ -222,9 +223,8 @@ export default function ProgramsEditor() {
                   key={p.id}
                   type="button"
                   onClick={() => setActiveId(p.id)}
-                  className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
-                    activeId === p.id ? 'bg-indigo-600/70 text-white' : 'text-white/80 hover:bg-white/5'
-                  }`}
+                  className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${activeId === p.id ? 'bg-indigo-600/70 text-white' : 'text-white/80 hover:bg-white/5'
+                    }`}
                 >
                   <div className="font-medium truncate">{p.title}</div>
                   <div className="text-xs text-white/50 truncate">{p.description ?? ''}</div>

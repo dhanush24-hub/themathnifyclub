@@ -14,6 +14,7 @@ interface Patron {
 
 export default function PatronsEditor() {
   const [list, setList] = useState<Patron[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [saving, setSaving] = useState(false);
   const [msg, setMsg] = useState('');
 
