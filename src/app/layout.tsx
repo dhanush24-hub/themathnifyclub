@@ -1,25 +1,28 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Outfit, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
+import PublicLayout from '@/components/PublicLayout';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const outfit = Outfit({
+  variable: '--font-outfit',
   subsets: ['latin'],
+  display: 'swap',
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const jetbrainsMono = JetBrains_Mono({
+  variable: '--font-mono',
   subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
-  title: 'THE MATHnify CLUB | NREC CDC — Analytical Excellence',
+  title: 'THE MATHnify CLUB | NRCM CDC — Analytical Excellence',
   description:
     'Official student club under Career Development Center of Narsimha Reddy Engineering College. Fostering analytical excellence and structured aptitude mastery.',
   openGraph: {
-    title: 'THE MATHnify CLUB | NREC CDC',
-    description: 'Analytical excellence and structured aptitude mastery at NREC.',
+    title: 'THE MATHnify CLUB | NRCM CDC',
+    description: 'Analytical excellence and structured aptitude mastery at NRCM.',
   },
+  metadataBase: new URL('https://mathnify-club.vercel.app'),
 };
 
 export default function RootLayout({
@@ -28,9 +31,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}>
-        {children}
+    <html lang="en" className="scroll-smooth">
+      <body className={`${outfit.variable} ${jetbrainsMono.variable} font-sans antialiased min-h-screen flex flex-col bg-background text-foreground`}>
+        <PublicLayout>{children}</PublicLayout>
       </body>
     </html>
   );

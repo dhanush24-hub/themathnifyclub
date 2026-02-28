@@ -1,13 +1,14 @@
 import { createSupabaseServerClient } from '@/lib/supabase/server';
 import GalleryClient from './GalleryClient';
+import PageSection from '@/components/PageSection';
 
 export default async function GalleryPage() {
   const supabase = createSupabaseServerClient();
   const { data: images } = await supabase.from('gallery').select('*').order('created_at', { ascending: false });
 
   return (
-    <section className="py-20 md:py-28">
-      <div className="container mx-auto px-4 md:px-6">
+    <PageSection>
+      <div className="container mx-auto px-4 md:px-6 max-w-6xl">
         <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 text-center">
           Gallery
         </h1>
@@ -16,6 +17,6 @@ export default async function GalleryPage() {
         </p>
         <GalleryClient images={images || []} />
       </div>
-    </section>
+    </PageSection>
   );
 }

@@ -35,7 +35,6 @@ export interface ExecutiveMember {
 export interface Department {
   id: string;
   name: string;
-  team_head_id: string | null;
   sort_order: number;
   created_at: string;
 }
@@ -46,6 +45,25 @@ export interface DepartmentMember {
   name: string;
   is_head: boolean;
   photo_url: string | null;
+  sort_order: number;
+  created_at: string;
+}
+
+export interface Program {
+  id: string;
+  title: string;
+  description: string | null;
+  details: string | null;
+  program_date: string | null;
+  image_url: string | null;
+  sort_order: number;
+  created_at: string;
+}
+
+export interface ProgramImage {
+  id: string;
+  program_id: string;
+  image_url: string;
   sort_order: number;
   created_at: string;
 }

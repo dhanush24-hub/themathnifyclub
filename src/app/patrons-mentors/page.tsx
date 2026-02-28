@@ -1,5 +1,6 @@
 import { createSupabaseServerClient } from '@/lib/supabase/server';
 import Image from 'next/image';
+import PageSection from '@/components/PageSection';
 
 export default async function PatronsMentorsPage() {
   const supabase = createSupabaseServerClient();
@@ -16,8 +17,8 @@ export default async function PatronsMentorsPage() {
   const items = list?.length ? list : defaultList;
 
   return (
-    <section className="py-20 md:py-28">
-      <div className="container mx-auto px-4 md:px-6">
+    <PageSection>
+      <div className="container mx-auto px-4 md:px-6 max-w-6xl">
         <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 text-center">
           Patrons & Mentors
         </h1>
@@ -28,7 +29,7 @@ export default async function PatronsMentorsPage() {
           {items.map((person: { id?: string; name: string; role: string; description: string | null; photo_url: string | null }) => (
             <div
               key={person.id ?? person.name}
-              className="glass-panel rounded-xl p-6 text-center hover:border-white/15 transition-colors"
+              className="glass-panel rounded-xl p-6 text-center hover:border-white/15 hover-lift transition-all duration-300"
             >
               <div className="w-24 h-24 rounded-full bg-indigo-500/20 mx-auto mb-4 overflow-hidden flex items-center justify-center">
                 {person.photo_url ? (
@@ -54,6 +55,6 @@ export default async function PatronsMentorsPage() {
           ))}
         </div>
       </div>
-    </section>
+    </PageSection>
   );
 }

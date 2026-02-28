@@ -1,6 +1,6 @@
 import { createSupabaseServerClient } from '@/lib/supabase/server';
 import Image from 'next/image';
-import Link from 'next/link';
+import PageSection from '@/components/PageSection';
 
 const DEFAULT_DEPTS = [
   'Marketing Team',
@@ -21,8 +21,8 @@ export default async function DepartmentsPage() {
   const depts = departments?.length ? departments : DEFAULT_DEPTS.map((name, i) => ({ id: `d-${i}`, name, sort_order: i }));
 
   return (
-    <section className="py-20 md:py-28">
-      <div className="container mx-auto px-4 md:px-6">
+    <PageSection>
+      <div className="container mx-auto px-4 md:px-6 max-w-6xl">
         <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 text-center">
           Departments
         </h1>
@@ -36,7 +36,7 @@ export default async function DepartmentsPage() {
             const rest = members.filter((m: { is_head: boolean }) => !m.is_head).slice(0, 6);
 
             return (
-              <div key={dept.id} className="glass-panel rounded-2xl p-8">
+              <div key={dept.id} className="glass-panel rounded-2xl p-8 hover-lift transition-all duration-300">
                 <h2 className="text-2xl font-bold text-white mb-6 border-b border-white/10 pb-3">
                   {dept.name}
                 </h2>
@@ -77,6 +77,6 @@ export default async function DepartmentsPage() {
           })}
         </div>
       </div>
-    </section>
+    </PageSection>
   );
 }

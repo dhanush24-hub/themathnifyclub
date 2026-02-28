@@ -10,10 +10,12 @@ import GalleryEditor from './GalleryEditor';
 import ApplicationsList from './ApplicationsList';
 import ContactEditor from './ContactEditor';
 import AnnouncementsEditor from './AnnouncementsEditor';
+import ProgramsEditor from './ProgramsEditor';
 
 const TABS = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
+  { id: 'programs', label: 'Programs' },
   { id: 'patrons', label: 'Patrons & Mentors' },
   { id: 'executive', label: 'Executive Board' },
   { id: 'departments', label: 'Departments' },
@@ -45,6 +47,7 @@ export default function AdminDashboard() {
       <div className="flex-1 glass-panel rounded-xl p-6 min-h-[400px]">
         {active === 'home' && <HomeEditor />}
         {active === 'about' && <AboutEditor />}
+        {active === 'programs' && <ProgramsEditor />}
         {active === 'patrons' && <PatronsEditor />}
         {active === 'executive' && <ExecutiveEditor />}
         {active === 'departments' && <DepartmentsEditor />}

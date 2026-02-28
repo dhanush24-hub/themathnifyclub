@@ -1,5 +1,6 @@
 import { createSupabaseServerClient } from '@/lib/supabase/server';
 import Image from 'next/image';
+import PageSection from '@/components/PageSection';
 
 const DEFAULT_LEADS = [
   { name: 'Rahul Kumar', role: 'President' },
@@ -20,8 +21,8 @@ export default async function ClubLeadsPage() {
   const items = list?.length ? list : DEFAULT_LEADS.map((l, i) => ({ ...l, photo_url: null, description: null, sort_order: i }));
 
   return (
-    <section className="py-20 md:py-28">
-      <div className="container mx-auto px-4 md:px-6">
+    <PageSection>
+      <div className="container mx-auto px-4 md:px-6 max-w-6xl">
         <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 text-center">
           Club Leads & Executive Board
         </h1>
@@ -32,7 +33,7 @@ export default async function ClubLeadsPage() {
           {items.map((member: { id?: string; name: string; role: string; photo_url?: string | null; description?: string | null }) => (
             <div
               key={member.id ?? member.name}
-              className="glass-panel rounded-xl p-6 text-center hover:border-white/15 transition-colors"
+              className="glass-panel rounded-xl p-6 text-center hover:border-white/15 hover-lift transition-all duration-300"
             >
               <div className="w-28 h-28 rounded-full bg-indigo-500/20 mx-auto mb-4 overflow-hidden flex items-center justify-center">
                 {member.photo_url ? (
@@ -58,6 +59,6 @@ export default async function ClubLeadsPage() {
           ))}
         </div>
       </div>
-    </section>
+    </PageSection>
   );
 }

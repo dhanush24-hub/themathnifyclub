@@ -22,7 +22,7 @@ export default function Announcements() {
 
   return (
     <section className="py-16 md:py-24 relative">
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="container mx-auto px-4 md:px-6 max-w-6xl">
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-10 text-center">
           Announcements
         </h2>
@@ -30,7 +30,7 @@ export default function Announcements() {
           {announcements.map((a) => (
             <article
               key={a.id}
-              className="glass-panel rounded-xl p-6 hover:border-white/15 transition-colors"
+              className="glass-panel rounded-xl p-6 hover:border-white/15 hover-lift transition-all duration-300"
             >
               <h3 className="text-lg font-semibold text-white">{a.title}</h3>
               <p className="mt-2 text-white/70 text-sm">{a.content}</p>

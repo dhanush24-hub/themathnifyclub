@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
+  { href: '/programs', label: 'Programs' },
   { href: '/patrons-mentors', label: 'Patrons & Mentors' },
   { href: '/club-leads', label: 'Club Leads' },
   { href: '/departments', label: 'Departments' },
@@ -19,36 +20,52 @@ export default function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [logoError, setLogoError] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'glass-panel py-3' : 'py-5 bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-xl border-b ${
+        scrolled
+          ? 'py-3 bg-black/80 shadow-xl shadow-black/40 border-white/10'
+          : 'py-4 bg-black/70 shadow-lg shadow-black/30 border-white/10'
       }`}
     >
-      <nav className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 shrink-0">
-          <span className="text-xl font-bold tracking-tight">
+      <nav className="container mx-auto px-4 md:px-6 lg:px-8 flex items-center justify-between max-w-7xl">
+        <Link href="/" className="flex items-center gap-3 shrink-0 group">
+          <span className="relative w-9 h-9 rounded-lg bg-indigo-500/20 flex items-center justify-center overflow-hidden border border-white/5">
+            {!logoError ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src="/logo.png"
+                alt="THE MATHnify CLUB"
+                className="object-contain w-full h-full"
+                onError={() => setLogoError(true)}
+              />
+            ) : (
+              <span className="text-lg font-bold text-indigo-400">M</span>
+            )}
+          </span>
+          <span className="text-lg font-semibold tracking-tight">
             <span className="gradient-text">THE MATHnify</span>
             <span className="text-white/90"> CLUB</span>
           </span>
         </Link>
 
-        <ul className="hidden md:flex items-center gap-8">
+        <ul className="hidden md:flex items-center gap-1">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
-                className={`text-sm font-medium transition-colors ${
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                   pathname === link.href
-                    ? 'text-indigo-400'
-                    : 'text-white/80 hover:text-white'
+                    ? 'text-indigo-400 bg-white/5'
+                    : 'text-white/75 hover:text-white hover:bg-white/5'
                 }`}
               >
                 {link.label}
@@ -59,7 +76,7 @@ export default function Navbar() {
 
         <button
           type="button"
-          className="md:hidden p-2 text-white/80"
+          className="md:hidden p-2.5 rounded-lg text-white/80 hover:bg-white/5 transition-colors"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Menu"
         >
@@ -74,14 +91,14 @@ export default function Navbar() {
       </nav>
 
       {mobileOpen && (
-        <div className="md:hidden glass-panel mt-2 mx-4 rounded-lg border border-white/10 p-4">
-          <ul className="flex flex-col gap-3">
+        <div className="md:hidden glass-panel-strong mt-2 mx-4 rounded-xl border border-white/10 p-4 shadow-xl">
+          <ul className="flex flex-col gap-1">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`block py-2 text-sm font-medium ${
-                    pathname === link.href ? 'text-indigo-400' : 'text-white/80'
+                  className={`block py-3 px-3 rounded-lg text-sm font-medium transition-colors ${
+                    pathname === link.href ? 'text-indigo-400 bg-white/5' : 'text-white/80 hover:bg-white/5'
                   }`}
                   onClick={() => setMobileOpen(false)}
                 >

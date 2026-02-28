@@ -17,8 +17,8 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-white/90 mb-3">Quick Links</h4>
             <ul className="space-y-2">
-              {['/', '/about', '/patrons-mentors', '/club-leads', '/departments', '/gallery', '/contact', '/join'].map((href, i) => {
-                const labels = ['Home', 'About', 'Patrons & Mentors', 'Club Leads', 'Departments', 'Gallery', 'Contact', 'Join'];
+              {['/', '/about', '/programs', '/patrons-mentors', '/club-leads', '/departments', '/gallery', '/contact', '/join'].map((href, i) => {
+                const labels = ['Home', 'About', 'Programs', 'Patrons & Mentors', 'Club Leads', 'Departments', 'Gallery', 'Contact', 'Join'];
                 return (
                   <li key={href}>
                     <Link href={href} className="text-sm text-white/60 hover:text-indigo-400 transition-colors">
@@ -36,7 +36,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-10 pt-8 border-t border-white/10 text-center text-sm text-white/50">
-          © {new Date().getFullYear()} THE MATHnify CLUB — NREC CDC. All rights reserved.
+          © {new Date().getFullYear()} THE MATHnify CLUB — NRCM CDC. All rights reserved.
         </div>
       </div>
     </footer>
